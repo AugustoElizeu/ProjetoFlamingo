@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-br"  xmlns:th="http://www.thymeleaf.org">
 <head>
-  <link rel="stylesheet" th:href="@{assets/css/reset.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/reset.css}">
 
-  <link rel="stylesheet" th:href="@{assets/css/pagina/layout-pagina.css}">
-  <link rel="stylesheet" th:href="@{assets/css/background/background-poligono.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/pagina/layout-pagina.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/background/background-poligono.css}">
   
-  <link rel="stylesheet" th:href="@{assets/css/container/container-cadastro-consulta.css}">
-  <link rel="stylesheet" th:href="@{assets/css/container/cabecalho/cabecalho.css}">
-  <link rel="stylesheet" th:href="@{assets/css/container/cabecalho/cabecalho__titulo.css}">
-  <link rel="stylesheet" th:href="@{assets/css/container/cabecalho/cabecalho__subtitulo.css}">
-  <link rel="stylesheet" th:href="@{assets/css/container/cabecalho/cabecalho__tipo-form.css}">
-  <link rel="stylesheet" th:href="@{assets/css/form/layout-form.css}">
-  <link rel="stylesheet" th:href="@{assets/css/form/link.css}">
-  <link rel="stylesheet" th:href="@{assets/css/form/input/input.css}">
-  <link rel="stylesheet" th:href="@{assets/css/form/input/botao.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/container/container-cadastro-consulta.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/container/cabecalho/cabecalho.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/container/cabecalho/cabecalho__titulo.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/container/cabecalho/cabecalho__subtitulo.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/container/cabecalho/cabecalho__tipo-form.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/form/layout-form.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/form/link.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/form/input/input.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/form/input/botao.css}">
 
-  <link rel="stylesheet" th:href="@{assets/css/resultado/container-resultado.css}">
-  <link rel="stylesheet" th:href="@{assets/css/resultado/resultado.css}">
-  <link rel="stylesheet" th:href="@{assets/css/resultado/resultado__titulo.css}">
-  <link rel="stylesheet" th:href="@{assets/css/resultado/resultado__info.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/resultado/container-resultado.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/resultado/resultado.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/resultado/resultado__titulo.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/resultado/resultado__info.css}">
 
-  <link rel="stylesheet" th:href="@{assets/css/auxiliar.css}">
-  <link rel="stylesheet" th:href="@{assets/css/media_queries.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/auxiliar.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/media_queries.css}">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Remoção</title>
@@ -54,8 +54,9 @@
     </form>
 
     <!-- Resultado Pessoas -->
-    <div class="container-resultado" id="resultado-pessoas"  th:each="morador : ${moradores}">
-      <div class="resultado">
+    <div class="container-resultado" id="resultado-pessoas" >
+      <div class="resultado" th:each="morador : ${moradores}">
+		<div style="margin-bottom: 3em;">
         <h2 class="cabecalho__titulo">Informações </h2>
          <p class="info-label">
           Nome: <span class="resultadoinfo" th:text=" ${morador.id}" id="nome"></span>
@@ -78,8 +79,9 @@
         <p class="info-label">
           Data Fim: <span class="resultadoinfo" th:text="${morador.termino}" id="termino"></span>
         </p>
+        </div>
+        <a class="form__botao" style="text-align: center;" th:href="@{'/delete/' + ${morador != null ? morador.id : ''}}" id="botao-atualizar">Remover</a>
       </div>
-      <a class="form__botao" th:href="@{'/delete/' + ${morador != null ? morador.id : ''}}" id="botao-atualizar">Remover</a>
     </div>
     
 
@@ -94,23 +96,26 @@
 	</form>
 
     <!-- Resultado Alocações -->
-    <div class="container-resultado " id="resultado-alocacoes" th:each="apart : ${aparts}">
-      <div class="resultado">
-        <h2 class="cabecalho__titulo">Informações </h2>
-        <p class="info-label">
-          Id: <span class="resultado__info" id="id" th:text=" ${apart.id}"></span>
-        </p>
-        <p class="info-label">
-          Proprietário: <span class="resultado__info" id="proprietario" th:text=" ${apart.proprietario}">Fulano da Silva Ribeiro</span>
-        </p>
-        <p class="info-label">
-          Bloco: <span class="resultado__info" id="bloco" th:text=" ${apart.bloco}">99</span>
-        </p>
-        <p class="info-label">
-          Apartamento: <span class="resultado__info" id="apartamento" th:text=" ${apart.apartamento}">202</span>
-        </p>
+    <div class="container-resultado " id="resultado-alocacoes">
+      <div class="resultado"  th:each="apart : ${aparts}">
+		<div style="margin-bottom: 1em;">
+       	 <p class="info-label">
+        	  Id: <span class="resultado__info" id="id" th:text=" ${apart.id}"></span>
+       	 </p>
+      	  <p class="info-label">
+        	  Proprietário: <span class="resultado__info" id="proprietario" th:text=" ${apart.proprietario}">Fulano da Silva Ribeiro</span>
+        	</p>
+       	 <p class="info-label">
+       	   Bloco: <span class="resultado__info" id="bloco" th:text=" ${apart.bloco}">99</span>
+       	 </p>
+        	<p class="info-label">
+         	 Apartamento: <span class="resultado__info" id="apartamento" th:text=" ${apart.apartamento}">202</span>
+        	</p>
+        	<br>
+       	 <br>
+        </div>
+        <a class="form__botao"  style="text-align: center;" th:href="@{'/deleteAp/' + ${apart != null ? apart.id : ''}}" id="botao-atualizar">Remover</a>
       </div>
-       <a class="form__botao" th:href="@{'/deleteAp/' + ${apart != null ? apart.id : ''}}" id="botao-atualizar">Remover</a>
     </div>
     <a th:href="@{/menu}" class="link">Voltar ao menu</a>
   </div>

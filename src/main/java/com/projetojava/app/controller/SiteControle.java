@@ -27,6 +27,10 @@ public class SiteControle {
 		
 		return "deletar";
 	}
+	@GetMapping("/styleDel")
+	public String StyleDel() {
+		return "deletar";
+	}
 	@GetMapping("/atualizar")
 	public String atualizar(Model model) {
 		

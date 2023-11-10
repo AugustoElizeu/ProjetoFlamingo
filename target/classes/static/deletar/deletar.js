@@ -18,9 +18,6 @@ alocacoesRadio.addEventListener('change', () => {
   formAlocacoes.classList.remove("hidden");
 })
 
-formPessoas.addEventListener('submit', deletarDados);
-formAlocacoes.addEventListener('submit', deletarDados);
-
 function deletarDados(event) {
   if(pessoasRadio.checked){
     formPessoas.classList.add("hidden");

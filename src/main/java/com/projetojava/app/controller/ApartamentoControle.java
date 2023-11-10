@@ -5,14 +5,21 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.projetojava.app.entidades.Apartamento;
 import com.projetojava.app.repositories.ApartamentoRepository;
+import com.projetojava.app.service.ApartamentoService;
 
 @Controller
 public class ApartamentoControle {
+
+	@Autowired
+	private ApartamentoService as;
+	
 	@Autowired
 	private ApartamentoRepository ap;
 	
@@ -28,6 +35,19 @@ public class ApartamentoControle {
 		System.out.println(obj.get());
 		model.addAttribute("apartamentos", obj.get());
 		return "/consulta";
+	}
+	@RequestMapping(method=RequestMethod.POST, value="/bsaloc")
+	public String buscAloc(Long id, Model model) {
+		Optional<Apartamento> obj = ap.findById(id);
+		System.out.println(obj.get());
+		model.addAttribute("aparts", obj.get());
+		return "/deletar";
+	}
+	@GetMapping("/deleteAp/{id}")
+	public String deleteAloc(@PathVariable(name="id") Long id){
+		System.out.println("É dentro");
+		as.delete(id);
+		return "redirect:/deletar";
 	}
 	
 }

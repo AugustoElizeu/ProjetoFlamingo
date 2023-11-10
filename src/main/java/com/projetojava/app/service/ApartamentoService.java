@@ -27,4 +27,7 @@ public class ApartamentoService {
 	public Apartamento insert(Apartamento obj) {
 		return ar.save(obj);
 	}
+	public void delete(Long id) {
+		ar.deleteById(id);
+	}
 }

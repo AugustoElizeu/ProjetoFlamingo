@@ -35,6 +35,14 @@ public class Apartamento implements Serializable {
 	}
 	//
 	//
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public Integer getBloco() {
 		return bloco;
 	}

@@ -2,8 +2,8 @@ const pessoasRadio = document.querySelector("#pessoas");
 const alocacoesRadio = document.querySelector("#alocacoes");
 const formPessoas = document.querySelector(".form-pessoas");
 const formAlocacoes = document.querySelector(".form-alocacoes");
-const resultadoPessoas = document.querySelector("#resultado-pessoas")
-const resultadoAlocacoes = document.querySelector("#resultado-alocacoes")
+const resultadoPessoas = document.querySelector("#resultado-pessoas");
+const resultadoAlocacoes = document.querySelector("#resultado-alocacoes");
 
 
 pessoasRadio.addEventListener('change', () => {
@@ -21,4 +21,16 @@ alocacoesRadio.addEventListener('change', () => {
 formPessoas.addEventListener('submit', deletarDados);
 formAlocacoes.addEventListener('submit', deletarDados);
 
+function deletarDados(event) {
+  if(pessoasRadio.checked){
+    formPessoas.classList.add("hidden");
+    resultadoPessoas.classList.remove("hidden");
+    event.preventDefault();
+  }
+  if(alocacoesRadio.checked){
+    formAlocacoes.classList.add("hidden");
+    resultadoAlocacoes.classList.remove("hidden");
+    event.preventDefault();
+  }
+}
 

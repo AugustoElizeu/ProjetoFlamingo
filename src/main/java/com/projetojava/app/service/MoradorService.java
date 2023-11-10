@@ -27,6 +27,11 @@ public class MoradorService {
 	public Morador insert(Morador obj) {
 		return mr.save(obj);
 	}
+	
+	public void delete(Long id) {
+			mr.deleteById(id);
+	}
+	
 	public Morador update(Long id,Morador obj) {
 		Morador entity = mr.getReferenceById(id);
 		updateData(entity,obj);

@@ -58,4 +58,19 @@ public class ApartamentoControle {
 		return "/atualizar2";
 	}
 	
+	@RequestMapping(method=RequestMethod.POST, value="/busAlocAtt")
+	public String buscarAlocAtt(Long id, Model model) {
+		Optional<Apartamento> obj = ap.findById(id);
+		System.out.println(obj.get());
+		model.addAttribute("aparts", obj.get());
+		model.addAttribute("ids", obj.get());
+		return "/atualizar2";
+	}
+	@RequestMapping(method=RequestMethod.POST, value="/datupdate")
+	public String update(Long id, Apartamento apartamento){
+		System.out.println("É dentro");
+		as.update(id, apartamento);
+		return "redirect:/menu";
+	}
+	
 }

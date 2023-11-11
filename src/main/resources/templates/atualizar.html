@@ -49,15 +49,18 @@
     </form>
 
     <!-- Formulário de Atualização -->
-    <form class="form form-atualizarPessoas">
+    <form class="form form-atualizarPessoas" th:action="@{/dataupdate}" method="post">
+		<label th:each="id : ${ids}"> 
+		<input type="text" class="form__input" id="nome" th:value="${id.id}" name="id" placeholder="id" readonly>
+		</label>
       <fieldset th:each="morador : ${moradores}">
-        <input type="text" class="form__input" id="nome"  th:value="${morador.nome}"   placeholder="Nome Completo">
-        <input type="text" class="form__input" id="cpf" th:value="${morador.cpf}" maxlength="14" placeholder="CPF" pattern="^(\d{3})[. ]?(\d{3})[. ]?(\d{3})[- ]?(\d{2}$)$">
-        <input type="email" class="form__input" id="email" th:value="${morador.email}"  placeholder="Email">
-        <input type="tel" class="form__input" id="telefone" th:value="${morador.telefone}" maxlength="14" pattern="^(\(?\d{2}\)?)\s?(9\d{4})[-\s]?(\d{4})$" placeholder="Telefone">
-        <input type="date" class="form__input" id="email" th:value="${morador.inicio}" name="email"  placeholder="Email">
-		<input type="date" class="form__input" id="email" th:value="${morador.termino}" name="email"  placeholder="Email">  
-		<a class="form__botao" id="botao-atualizar" th:href="@{'/update/' + ${morador != null ? morador.id : ''}}">Atualizar Dados</a>
+        <input type="text" class="form__input" id="nome" name="nome"  th:value="${morador.nome}"   placeholder="Nome Completo">
+        <input type="text" class="form__input" id="cpf" name="cpf" th:value="${morador.cpf}" maxlength="14" placeholder="CPF" pattern="^(\d{3})[. ]?(\d{3})[. ]?(\d{3})[- ]?(\d{2}$)$">
+        <input type="email" class="form__input" id="email"  name="email" th:value="${morador.email}"  placeholder="Email">
+        <input type="tel" class="form__input" id="telefone"  name="telefone" th:value="${morador.telefone}" maxlength="14" pattern="^(\(?\d{2}\)?)\s?(9\d{4})[-\s]?(\d{4})$" placeholder="Telefone">
+        <input type="date" class="form__input" id="email"  name="inicio" th:value="${morador.inicio}"  placeholder="Email">
+		<input type="date" class="form__input" id="email"  name="termino" th:value="${morador.termino}"  placeholder="Email">  
+		<button class="form__botao" id="botao-atualizar" th:href="@{'/dataupdate' + ${morador != null ? morador.id : ''}}">Atualizar Dados</button>
       </fieldset>
     </form>
     <a th:href="@{/menu}" class="link">Voltar ao menu</a>

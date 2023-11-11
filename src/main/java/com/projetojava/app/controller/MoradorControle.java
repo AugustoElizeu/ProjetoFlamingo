@@ -62,13 +62,14 @@ public class MoradorControle {
 		Optional<Morador> obj = mr.findById(id);
 		System.out.println(obj.get());
 		model.addAttribute("moradores", obj.get());
+		model.addAttribute("ids", obj.get());
 		return "/atualizar";
 	}
-	@GetMapping("/update/{id}")
-	public String update(@PathVariable(name="id") Long id){
+	@RequestMapping(method=RequestMethod.POST, value="/dataupdate")
+	public String update(Long id, Morador morador){
 		System.out.println("É dentro");
-		ms.delete(id);
-		return "redirect:/deletar";
+		ms.update(id, morador);
+		return "redirect:/menu";
 	}
 	
 }

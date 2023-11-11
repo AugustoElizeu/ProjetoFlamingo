@@ -41,7 +41,7 @@
     </header>
 
     <!-- Consulta de Alocações -->
-    <form class="form form-alocacoes" th:action="@{/bsalocatt}" method="post">
+    <form class="form form-alocacoes" th:action="@{/busAlocAtt}" method="post">
       <fieldset>
         <input type="number" name="id" id="idAloc" class="form__input" placeholder="ID Alocação" required>
       </fieldset>
@@ -49,12 +49,15 @@
     </form>
 
     <!-- Formulário de Atualização -->
-    <form class="form form-atualizarAlocacoes">
+    <form class="form form-atualizarAlocacoes" th:action="@{/datupdate}" method="post">
+		<label th:each="id : ${ids}">
+		 <input type="text" class="form__input" id="id" th:value="${id.id}" name="id" placeholder="id" readonly>
+		</label>
       <fieldset th:each="apart : ${aparts}">
-        <input type="text" id="proprietario" class="form__input" th:value="${apart.proprietario}" placeholder="Proprietário" required>
-        <input type="number" id="bloco" class="form__input" min="1" th:value="${apart.bloco}" placeholder="Bloco" required>
-        <input type="number" id="apt" class="form__input" min="1" th:value="${apart.apartamento}" placeholder="Apartamento" required>
-        <button class="form__botao" id="botao-atualizar">Atualizar Dados</button>
+        <input type="text" id="proprietario" class="form__input" th:value="${apart.proprietario}" name="proprietario" placeholder="Proprietário" required>
+        <input type="number" id="bloco" class="form__input" min="1" th:value="${apart.bloco}" name="bloco" placeholder="Bloco" required>
+        <input type="number" id="apt" class="form__input" min="1" th:value="${apart.apartamento}" name="apartamento" placeholder="Apartamento" required>
+        <button class="form__botao" id="botao-atualizar" th:href="@{'/datapdate' + ${apart != null ? apart.id : ''}}">Atualizar Dados</button>
       </fieldset>
     </form>
     <a th:href="@{/menu}" class="link">Voltar ao menu</a>

@@ -30,4 +30,14 @@ public class ApartamentoService {
 	public void delete(Long id) {
 		ar.deleteById(id);
 	}
+	public Apartamento update(Long id,Apartamento obj) {
+		Apartamento entity = ar.getReferenceById(id);
+		updateData(entity,obj);
+		return ar.save(entity);
+	}
+	private void updateData(Apartamento entity, Apartamento obj) {
+		entity.setProprietario(obj.getProprietario());
+		entity.setBloco(obj.getBloco());
+		entity.setApartamento(obj.getApartamento());
+	}
 }

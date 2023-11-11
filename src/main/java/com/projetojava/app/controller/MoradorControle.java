@@ -55,5 +55,20 @@ public class MoradorControle {
 		ms.delete(id);
 		return "redirect:/deletar";
 	}
+	
 
+	@RequestMapping(method=RequestMethod.POST, value="/busMorAtt")
+	public String buscarMoradorAtt(Long id, Model model) {
+		Optional<Morador> obj = mr.findById(id);
+		System.out.println(obj.get());
+		model.addAttribute("moradores", obj.get());
+		return "/atualizar";
+	}
+	@GetMapping("/update/{id}")
+	public String update(@PathVariable(name="id") Long id){
+		System.out.println("É dentro");
+		ms.delete(id);
+		return "redirect:/deletar";
+	}
+	
 }

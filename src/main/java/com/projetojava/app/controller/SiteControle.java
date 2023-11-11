@@ -36,6 +36,12 @@ public class SiteControle {
 		
 		return "atualizar";
 	}
+	
+	@GetMapping("/atualizar2")
+	public String atualizar2(Model model) {
+		
+		return "atualizar2";
+	}
 
 	@GetMapping("/consulta")
 	public String consulta(Model model) {

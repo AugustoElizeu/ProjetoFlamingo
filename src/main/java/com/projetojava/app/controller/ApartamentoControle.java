@@ -49,5 +49,13 @@ public class ApartamentoControle {
 		as.delete(id);
 		return "redirect:/deletar";
 	}
+	@RequestMapping(method=RequestMethod.POST, value="/bsalocatt")
+	public String buscAlocAtt(Long id, Model model) {
+		System.out.println("Funciona ? "+ id);
+		Optional<Apartamento> obj = ap.findById(id);
+		System.out.println(obj.get());
+		model.addAttribute("aparts", obj.get());
+		return "/atualizar2";
+	}
 	
 }

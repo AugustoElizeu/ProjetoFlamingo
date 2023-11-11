@@ -32,32 +32,29 @@
       <h3 class="cabecalho__subtitulo">Oque vamos atualizar?</h3>
       <fieldset class="cabecalho__tipo-form">
         <label for="pessoas" class="radio-label">
-          <input type="radio" name="tipo-consulta" id="pessoas" checked> Pessoas
+         <a th:href="@{/atualizar}"> <input type="radio" name="tipo-consulta" id="pessoas"> Pessoas </a>
         </label>
         <label for="alocacoes" class="radio-label">
-          <a th:href="@{/atualizar2}"><input type="radio" name="tipo-consulta" id="alocacoes"> Alocações </a>
+          <input type="radio" name="tipo-consulta" id="alocacoes" checked> Alocações
         </label>
       </fieldset>
     </header>
-    
-     <!-- Consulta de Pessoas -->
-    <form class="form form-pessoas" th:action="@{/busMorAtt}" method="post">
+
+    <!-- Consulta de Alocações -->
+    <form class="form form-alocacoes" th:action="@{/bsalocatt}" method="post">
       <fieldset>
-        <input type="number" name="id" id="id" class="form__input" placeholder="ID Pessoa" required>
+        <input type="number" name="id" id="idAloc" class="form__input" placeholder="ID Alocação" required>
       </fieldset>
-      <button type="submit" class="form__botao" style="margin: 1em;">Buscar dados</button>
+      <button type="submit" class="form__botao" style="margin:1em;">Buscar dados</button>
     </form>
 
     <!-- Formulário de Atualização -->
-    <form class="form form-atualizarPessoas">
-      <fieldset th:each="morador : ${moradores}">
-        <input type="text" class="form__input" id="nome"  th:value="${morador.nome}"   placeholder="Nome Completo">
-        <input type="text" class="form__input" id="cpf" th:value="${morador.cpf}" maxlength="14" placeholder="CPF" pattern="^(\d{3})[. ]?(\d{3})[. ]?(\d{3})[- ]?(\d{2}$)$">
-        <input type="email" class="form__input" id="email" th:value="${morador.email}"  placeholder="Email">
-        <input type="tel" class="form__input" id="telefone" th:value="${morador.telefone}" maxlength="14" pattern="^(\(?\d{2}\)?)\s?(9\d{4})[-\s]?(\d{4})$" placeholder="Telefone">
-        <input type="date" class="form__input" id="email" th:value="${morador.inicio}" name="email"  placeholder="Email">
-		<input type="date" class="form__input" id="email" th:value="${morador.termino}" name="email"  placeholder="Email">  
-		<a class="form__botao" id="botao-atualizar" th:href="@{'/update/' + ${morador != null ? morador.id : ''}}">Atualizar Dados</a>
+    <form class="form form-atualizarAlocacoes">
+      <fieldset th:each="apart : ${aparts}">
+        <input type="text" id="proprietario" class="form__input" th:value="${apart.proprietario}" placeholder="Proprietário" required>
+        <input type="number" id="bloco" class="form__input" min="1" th:value="${apart.bloco}" placeholder="Bloco" required>
+        <input type="number" id="apt" class="form__input" min="1" th:value="${apart.apartamento}" placeholder="Apartamento" required>
+        <button class="form__botao" id="botao-atualizar">Atualizar Dados</button>
       </fieldset>
     </form>
     <a th:href="@{/menu}" class="link">Voltar ao menu</a>
